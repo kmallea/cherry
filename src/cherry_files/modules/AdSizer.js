@@ -33,6 +33,9 @@ var AdSizer = (function(){
 			width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			//console.log(width);
 			return adUnit; 
+		},
+		showAd : function(who) {
+			$(who).addClass(AdSizer.unit());
 		}
 	};
 })();

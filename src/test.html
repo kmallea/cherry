@@ -9,10 +9,15 @@
 	<meta name="author" content="">
 
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="css/style.css">
+	<style>
+	#cherryLogger{
+		color:red;
+	}
+	</style>
 	<script src="js/head.min.js"></script>
 	<script>
-		var path = 'js';
+		var path = 'js',
+		chap;
 		
 		head.ready(document, function() {
 			head.load([path + '/jquery.min.js', 'Cherry.js'],function(){
@@ -21,11 +26,11 @@
 					isDev : true,
 					requiredModules : ['isMobile','AdSizer','CherryCore'],
 					onInit : function(){
-						Cherry.tools.log('DEVICE LAYOUT',Cherry.pick.CherryCore.getDeviceLayout());
+						Cherry.tools.log('DEVICE LAYOUT', Cherry.pick.CherryCore.getDeviceLayout());
 						Cherry.tools.log('APP IS READY TO GO!');
 					}
 				});	
-			});
+			});  
 		});
 	</script>
 </head>

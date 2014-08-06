@@ -2,6 +2,7 @@ var Cherry = (function () {
 
 	var options = {
 		isDev : true,
+		logToPage : true,
 		onInit : null,
 		initPages : true,
 		pageName : 'Home',
@@ -14,12 +15,13 @@ var Cherry = (function () {
 	},
 	settings = {
 		version : 0.1,
-		appName : 'Cherry Build',
+		appName : 'CherryDev',
 		startTime : 0,
 		endTime : 0,
 		modules : {},
 		modulesToLoad : 0,
-		modulesLoaded : 0
+		modulesLoaded : 0,
+		isModuleInit : []
 	},
 	tools = {
 		moduleExists : function(moduleName){
@@ -47,12 +49,29 @@ var Cherry = (function () {
 		    return arguments[0];
 		},
 		log : function(){
-			if(options.isDev){ console.log(settings.appName + ': debug:' + options.isDev + ' ' , arguments); }	
+			if(options.isDev){ 
+				console.log(settings.appName + ': debug:' + options.isDev + ' ' , arguments);
+				if(options.logToPage){
+					if(!$('#cherryLogger').length){
+						$('body').append('<div id="cherryLogger"><h1>Cherry Dev Logger</h1></div>');
+					}
+					var args = [];
+					for(var i in arguments){
+						
+						args.push(arguments[i]);
+						console.log('ARGS ' + i + ': ' + arguments[i], args);
+					}
+					//args.join(', ');
+					$('#cherryLogger').html($('#cherryLogger').html() + '<hr>' + settings.appName + ': debug:' + options.isDev + ' [ ' + args + ' ]')
+				} 
+			}	
+
 		}	
 	},
 	api = {
 		pub : {
 			init : function(opts){
+				tools.log('Initializing ' + settings.appName);
 				tools.timer.start();
 				tools.extend(options,opts);
 				// do init functions here
@@ -123,7 +142,7 @@ var Cherry = (function () {
 		priv : {
 			pageInit : function(callback){
 				var initPath = options.cherryFilesPath + options.cherryInitsPath + options.cherryInitStrName + options.pageSection + '.js';
-				tools.log('priv.pageInit()', initPath);
+				tools.log('PRIVATE::pageInit() : METHOD ' + initPath);
 				head.load(initPath,function(){
 					callback.call();
 				})

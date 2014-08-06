@@ -46,9 +46,6 @@ var CherryCore = (function(){
 			linkCatch : function() {
 				event.stopPropagation();
 			},
-			showAd : function(who) {
-				$(who).addClass(Cherry.pick.AdSizer.unit());
-			},
 			onResize : function() {
 				if (props.isNavOpen) {
 					if(!isMobile.apple.phone && !isMobile.apple.ipod && !isMobile.android.phone){
