@@ -21,7 +21,8 @@ var Cherry = (function () {
 		modules : {},
 		modulesToLoad : 0,
 		modulesLoaded : 0,
-		isModuleInit : []
+		isModuleInit : [],
+		windowVars : []
 	},
 	tools = {
 		moduleExists : function(moduleName){
@@ -59,9 +60,7 @@ var Cherry = (function () {
 					for(var i in arguments){
 						
 						args.push(arguments[i]);
-						console.log('ARGS ' + i + ': ' + arguments[i], args);
 					}
-					//args.join(', ');
 					$('#cherryLogger').html($('#cherryLogger').html() + '<hr>' + settings.appName + ': debug:' + options.isDev + ' [ ' + args + ' ]')
 				} 
 			}	
@@ -74,6 +73,8 @@ var Cherry = (function () {
 				tools.log('Initializing ' + settings.appName);
 				tools.timer.start();
 				tools.extend(options,opts);
+				//load global vars
+				for(var i in window){ settings.windowVars.push(i); }
 				// do init functions here
 				var moduleListType = typeof options.requiredModules;
 				if(moduleListType !== null){
@@ -115,12 +116,19 @@ var Cherry = (function () {
 				tools.extend(options,opts);
 			},
 			loadModule : function(moduleName, callBack){
-				var modulePath = options.cherryFilesPath + options.cherryModulePath + moduleName + '.js';
+				
+				var modulePath = (moduleName.indexOf('/') > -1) ? moduleName : options.cherryFilesPath + options.cherryModulePath + moduleName + '.js';
 				var error = 0;
 				if(typeof window[moduleName] === 'undefined'){
 					head.load(modulePath,function(){
-						settings.modules[moduleName] = window[moduleName];
-						tools.log('MODULE ADDED: ' + moduleName);
+						for(var i in window){
+							if(settings.windowVars.indexOf(i) === -1){
+								//settings.modules[moduleName] = window[moduleName];
+								settings.modules[i] = window[i];
+								settings.windowVars.push(i);
+								tools.log('MODULE ADDED: ' + i);
+							}
+						}
 						if(typeof callBack === 'function'){
 							callBack.call(this,settings.modules[moduleName]);
 						}
@@ -135,6 +143,28 @@ var Cherry = (function () {
 					break;
 				}
 				
+			},
+			tree : function(){
+				tools.log('CHERRY TREE START');
+				tools.log(' |   ');
+				tools.log('   MODULES   ');
+				// look at  modules loaded
+				for(var i in settings.modules){
+					tools.log(' |--- MODULE:' + i);
+				}
+				tools.log(' |   ');
+				tools.log(' |   ');
+				tools.log('   OPTIONS   ');
+				for(var i in options){
+					tools.log(' |--- OPTION:' + i + ' "' + options[i] + '"');
+				}
+				tools.log(' |   ');
+				tools.log(' |   ');
+				tools.log('   SETTINGS   ');
+				for(var i in settings){
+					tools.log(' |--- SETTING:' + i + ' "' + settings[i] + '"');
+				}
+				tools.log('CHERRY TREE END');
 			},
 			pick : settings.modules,
 			tools : tools

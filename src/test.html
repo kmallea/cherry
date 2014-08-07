@@ -12,6 +12,11 @@
 	<style>
 	#cherryLogger{
 		color:red;
+		width: 400px;
+		height: 100%;
+		overflow: auto;
+		border: solid 1px #eeeeee;
+		padding: 0 20px;
 	}
 	</style>
 	<script src="js/head.min.js"></script>
@@ -24,7 +29,7 @@
 				Cherry.init({
 					pageSection : 'home',
 					isDev : true,
-					requiredModules : ['isMobile','AdSizer','CherryCore'],
+					requiredModules : ['cherry_files/lib/handlebars.js', 'isMobile','AdSizer','hbLoader','CherryCore'],
 					onInit : function(){
 						Cherry.tools.log('DEVICE LAYOUT', Cherry.pick.CherryCore.getDeviceLayout());
 						Cherry.tools.log('APP IS READY TO GO!');
