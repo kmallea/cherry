@@ -46,6 +46,20 @@ Sets or adds new options to Cherry
 
  - options : Object - an oject of existing or new options
 
+**Options**
+
+ - isDev : true //when set true will show console messages for *Cherry.tools.log();*
+ - logToPage : true, 		
+ - onInit : null, 		
+ - initPages : true,
+ - pageName : 'Home',
+ - cherryFilesPath : 'cherry_files',
+ - cherryModulePath : '/modules/', 		
+ - cherryInitsPath : '/inits/',
+ - cherryInitStrName : 'init_', 		
+ - pageSection : 'home',
+ - requiredModules : null,
+
  
  *returns null*   
 
@@ -83,5 +97,27 @@ Loads a new module in to Cherry. Either a module name that can be found in the '
 
 
 ----------
+**Cherry.pick.*moduleName*()**
+
+Gives you access to the module you want to use.
+
+    Cherry.pick.moduleName(moduleOptions);
+    
+*returns based on module used.*
+
+
+----------
+**Cherry.tools.log()**
+
+Logs a message to the console and to #cherryLogger div. Only displays when isDev option is set to true.
+
+    Cherry.tools.log('My Log message');
+    
+Arguments
+
+ - none
+
+*returns null*
+
 
 ***Cherry is in dev and is a work in progress***
