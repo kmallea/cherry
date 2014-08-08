@@ -144,6 +144,9 @@ var Cherry = (function () {
 				}
 				
 			},
+			hasModule : function(moduleName){
+				return  (typeof settings.modules[moduleName] !== 'undefined') ? true : false;
+			},
 			tree : function(){
 				tools.log('CHERRY TREE START');
 				tools.log(' |   ');
