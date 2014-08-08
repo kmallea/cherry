@@ -37,6 +37,8 @@ Methods
  
 Sets or adds new options to Cherry
 
+**Example:**
+
     Cherry.config({
         isDev : false
     });
@@ -66,10 +68,30 @@ Sets or adds new options to Cherry
 
 ----------
 
+Cherry.hasModule()
+------------------
+
+Checks if a module exists inside of Cherry
+
+**Example:**
+
+    var hasMobileDetect = Cherry.hasModule('isMobile');
+
+**Arguments**
+ - moduleName  : Array/String an array or string of either a module name
+   or full path of the file.
+
+*returns Boolean*
+
+
+----------
+
 
 **Cherry.loadModule()**
 
 Loads a new module in to Cherry. Either a module name that can be found in the 'cherryFilesPath + cherryModulePath' Config Option or a full path to a javascript file.
+
+**Example:**
 
     Cherry.loadModule(['isMobile', 'path/to/file.js'],function(){
         //when modules are loaded do something
@@ -87,6 +109,8 @@ Loads a new module in to Cherry. Either a module name that can be found in the '
 
 **Cherry.tree()**
 
+**Example:**
+
     Cherry.tree();
 
 **Arguments**
@@ -97,9 +121,11 @@ Loads a new module in to Cherry. Either a module name that can be found in the '
 
 
 ----------
-**Cherry.pick.*moduleName*()**
+**Cherry.pick.*{moduleName}***
 
 Gives you access to the module you want to use.
+
+**Example:**
 
     Cherry.pick.moduleName(moduleOptions);
     
@@ -110,6 +136,8 @@ Gives you access to the module you want to use.
 **Cherry.tools.log()**
 
 Logs a message to the console and to #cherryLogger div. Only displays when isDev option is set to true.
+
+**Example:**
 
     Cherry.tools.log('My Log message');
     
