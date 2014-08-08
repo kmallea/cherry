@@ -110,6 +110,9 @@ Loads a new module in to Cherry. Either a module name that can be found in the '
 
 **Cherry.tree()**
 
+Writes a Console log or logToPage all of the options, settings and modules inside of Cherry.
+
+
 **Example:**
 
     Cherry.tree();
