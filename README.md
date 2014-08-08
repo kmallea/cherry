@@ -26,21 +26,21 @@ Usage:
 				});
 			
 
-Options
 
-    **Options**
 
- - isDev : true //when set true will show console messages for *Cherry.tools.log();*
- - logToPage : true, // when true *Cherry.tools.log();* is displayed in the #cherryLogger div
- - logToConsole : true, // when true *Cherry.tools.log();* is displayed in the console      
- - onInit : null, // a function to run when initiation is complete      
- - initPages : true, // run the init file for the *pageSection* value
- - cherryFilesPath : 'cherry_files', // path to folder for cherry files
- - cherryModulePath : '/modules/', // path for modules that live inside of cherry files
- - cherryInitsPath : '/inits/', // path for init files that cherry will autoload
- - cherryInitStrName : 'init_', // string to prepend to *pageSection* option that will create autoload init files       
- - pageSection : 'home', // a unique name for a page. Used to auto run init scripts   
- - requiredModules : null, // module name or full path of a module (.js file)
+**Options**
+
+     - isDev : true //when set true will show console messages for *Cherry.tools.log();*
+     - logToPage : true, // when true *Cherry.tools.log();* is displayed in the #cherryLogger div
+     - logToConsole : true, // when true *Cherry.tools.log();* is displayed in the console      
+     - onInit : null, // a function to run when initiation is complete      
+     - initPages : true, // run the init file for the *pageSection* value
+     - cherryFilesPath : 'cherry_files', // path to folder for cherry files
+     - cherryModulePath : '/modules/', // path for modules that live inside of cherry files
+     - cherryInitsPath : '/inits/', // path for init files that cherry will autoload
+     - cherryInitStrName : 'init_', // string to prepend to *pageSection* option that will create autoload init files       
+     - pageSection : 'home', // a unique name for a page. Used to auto run init scripts   
+     - requiredModules : null, // module name or full path of a module (.js file)
 Methods
 -------
 
