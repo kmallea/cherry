@@ -3,6 +3,7 @@ var Cherry = (function () {
 	var options = {
 		isDev : true,
 		logToPage : true,
+		logToConsole : true,
 		onInit : null,
 		initPages : true,
 		pageName : 'Home',
@@ -51,10 +52,13 @@ var Cherry = (function () {
 		},
 		log : function(){
 			if(options.isDev){ 
-				console.log(settings.appName + ': debug:' + options.isDev + ' ' , arguments);
+				if(options.logToConsole){
+					console.log(settings.appName + ': debug:' + options.isDev + ' ' , arguments);
+				}
 				if(options.logToPage){
 					if(!$('#cherryLogger').length){
 						$('body').append('<div id="cherryLogger"><h1>Cherry Dev Logger</h1></div>');
+						
 					}
 					var args = [];
 					for(var i in arguments){
@@ -75,7 +79,6 @@ var Cherry = (function () {
 				tools.extend(options,opts);
 				//load global vars
 				for(var i in window){ settings.windowVars.push(i); }
-				// do init functions here
 				var moduleListType = typeof options.requiredModules;
 				if(moduleListType !== null){
 					if(moduleListType === 'object'){

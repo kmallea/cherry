@@ -12,7 +12,7 @@
 	<style>
 	#cherryLogger{
 		color:red;
-		width: 400px;
+		width: 90%;
 		height: 100%;
 		overflow: auto;
 		border: solid 1px #eeeeee;
@@ -21,18 +21,27 @@
 	</style>
 	<script src="js/head.min.js"></script>
 	<script>
-		var path = 'js',
-		chap;
+		var path = 'js';
 		
 		head.ready(document, function() {
 			head.load([path + '/jquery.min.js', 'Cherry.js'],function(){
 				Cherry.init({
 					pageSection : 'home',
 					isDev : true,
-					requiredModules : ['cherry_files/lib/handlebars.js', 'isMobile','AdSizer','hbLoader','CherryCore'],
+					logToConsole : true,
+					requiredModules : [
+						'cherry_files/lib/handlebars.js', 
+						'isMobile',
+						'AdSizer',
+						'hbLoader',
+						'CherryCore',
+						'blank_module_template', 
+						'cherry_files/lib/jquery.cycle2.min.js'
+					],
 					onInit : function(){
 						Cherry.tools.log('DEVICE LAYOUT', Cherry.pick.CherryCore.getDeviceLayout());
 						Cherry.tools.log('APP IS READY TO GO!');
+						Cherry.pick.Cherry_Module_Template.init();
 					}
 				});	
 			});  
